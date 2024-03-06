@@ -1,37 +1,19 @@
-import * as React from "react";
-import { TodoContextType, ITodo } from "../@types/todo";
+import * as React from 'react';
+import { ITodo, TodoAction } from '../@types/todo';
+import { todoReducer } from '../reducers/todoReducer';
 
-export const TodoContext = React.createContext<TodoContextType | null>(null);
+export const TodoContext = React.createContext<{
+  todos: ITodo[];
+  dispatch: React.Dispatch<TodoAction>;
+} | null>(null);
 
-const TodoProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
-  const [todos, setTodos] = React.useState<ITodo[]>([]);
-
-  const saveTodo = (todo: ITodo) => {
-    const newTodo: ITodo = {
-      id: Math.random(), // not really unique - but fine for this example
-      title: todo.title,
-      description: todo.description,
-      status: false,
-    };
-    setTodos([...todos, newTodo]);
-  };
-
-  const updateTodo = (id: number) => {
-    todos.filter((todo: ITodo) => {
-      if (todo.id === id) {
-        todo.status = true;
-        setTodos([...todos]);
-      }
-    });
-  };
-  
+// TodoProvider component with the useReducer hook
+const TodoProvider: React.FC<{children: React.ReactNode}> = ({ children }) => {
+  const [todos, dispatch] = React.useReducer(todoReducer, []);
   return (
-    <TodoContext.Provider value={{ todos, saveTodo, updateTodo }}>
+    <TodoContext.Provider value={{ todos, dispatch }}>
       {children}
     </TodoContext.Provider>
   );
 };
-
 export default TodoProvider;

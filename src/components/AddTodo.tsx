@@ -1,22 +1,21 @@
-
+import * as React from 'react';
 import { TodoContext } from '../context/todoContext';
-import { TodoContextType, ITodo } from '../@types/todo';
-import { FC, FormEvent, useContext, useState } from 'react';
+import { ITodo } from '../@types/todo';
 
-const AddTodo: FC = () => {
-  const { saveTodo } = useContext(TodoContext) as TodoContextType;
-  const [formData, setFormData] = useState<ITodo | {}>();
-  const handleForm = (e: FormEvent<HTMLInputElement>): void => {
-    const value = e.currentTarget.value
+const AddTodo: React.FC = () => {
+  const { dispatch } = React.useContext(TodoContext)!;
+  const [formData, setFormData] = React.useState<ITodo | {}>();
+
+  const handleForm = (e: React.FormEvent<HTMLInputElement>): void => {
     setFormData({
       ...formData,
-      [e.currentTarget.id]: value,
+      [e.currentTarget.id]: e.currentTarget.value,
     });
   };
 
-  const handleSaveTodo = (e: FormEvent, formData: ITodo | any) => {
+  const handleSaveTodo = (e: React.FormEvent, formData: ITodo | any) => {
     e.preventDefault();
-    saveTodo(formData);
+    dispatch({ type: 'ADD_TODO', payload: formData });
   };
 
   return (

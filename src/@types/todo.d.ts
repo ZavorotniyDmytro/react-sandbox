@@ -5,6 +5,10 @@ export interface ITodo {
   status: boolean;
 }
 
+export type TodoAction =
+| { type: 'ADD_TODO'; payload: ITodo }
+| { type: 'UPDATE_TODO'; payload: number };
+
 export type TodoContextType = {
   todos: ITodo[];
   saveTodo: (todo: ITodo) => void;

@@ -1,17 +1,20 @@
-import { TodoContextType, ITodo } from "../@types/todo";
+import * as React from "react";
+import { ITodo } from "../@types/todo";
 import { TodoContext } from "../context/todoContext";
 import Todo from "../components/Todo";
-import { useContext } from "react";
 
-const TodoList = () => {
-  const { todos, updateTodo } = useContext(TodoContext) as TodoContextType;
+const Todos = () => {
+  const { todos, dispatch } = React.useContext(TodoContext)!;
   return (
     <>
       {todos.map((todo: ITodo) => (
-        <Todo key={todo.id} updateTodo={updateTodo} todo={todo} />
+        <Todo
+          key={todo.id}
+          updateTodo={() => dispatch({ type: "UPDATE_TODO", payload: todo.id })}
+          todo={todo}
+        />
       ))}
     </>
   );
 };
-
-export default TodoList;
+export default Todos;
