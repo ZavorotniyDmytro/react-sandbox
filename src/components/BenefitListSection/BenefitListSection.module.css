@@ -1,0 +1,39 @@
+.sectionBenefit {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+
+.ulBenefit {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style: none;
+  max-width: 1800px;
+  min-width: auto;
+}
+
+.liBenefit {
+  box-sizing: border-box;
+  min-width: 320px;
+  max-width: 400px;
+  border: solid transparent 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+.diagonalGradient {
+  background: linear-gradient(to top right, #2a2a48, #ff4857);
+}
+
+.pFontSize {
+    font-size: 22px;
+}
+
+.font {
+    color: #FFFFE2;
+}
+
+.imgSize {
+    width: 100px;
+}

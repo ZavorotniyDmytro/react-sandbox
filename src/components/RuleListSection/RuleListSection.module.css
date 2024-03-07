@@ -1,0 +1,36 @@
+
+.sectionRuleList{
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+
+.ulRuleList {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    list-style: none;
+    max-width: 1800px;
+    min-width: auto;
+}
+
+.liRule {
+    box-sizing: border-box;
+    min-width: 320px;
+    max-width: 400px;
+    border: solid transparent 10px;
+    padding: 20px;
+}
+
+.rectangle {
+	width: 36px;
+	height: 5px;
+	background: #f44336;
+    border-radius: 2px;
+}
+
+.pItalic {
+    font-style: italic;
+    color: #808080;
+    font-size: 20px;
+}
